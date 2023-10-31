@@ -26,16 +26,15 @@ class Counter:
         self.data = data
 
     def count_bytes(self):
-        return len(self.data)
-
+        return len(self.data.encode('utf-8'))
     def count_lines(self):
-        return len(self.data.split('\n'))
+        return len(self.data.split('\n'))-1
 
     def count_words(self):
-        return len(self.data.split(' '))
+        return len(self.data.split())
 
     def count_characters(self):
-        return len(self.data.replace(' ', ''))
+        return len(self.data)
 
     def run(self):
         if args.count:
