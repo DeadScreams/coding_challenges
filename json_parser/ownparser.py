@@ -36,4 +36,18 @@ class Parser:
                 raise Exception('Expected comma or end of object, got {}'.format(tokens[0]))
                 
     def parse_list(self, tokens: list):
-        pass
+        arr = []
+
+        if tokens[0] == ']':
+            return arr, tokens[1:]
+        
+        while True:
+            value, tokens = self.parse(tokens)
+            arr.append(value)
+            
+            if tokens[0] == ']':
+                return arr, tokens[1:]
+            elif tokens[0] == ',':
+                tokens = tokens[1:]
+            else:
+                raise Exception('Expected comma or end of array, got {}'.format(tokens[0]))
