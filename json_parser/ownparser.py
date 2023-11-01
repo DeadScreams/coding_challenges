@@ -51,3 +51,11 @@ class Parser:
                 tokens = tokens[1:]
             else:
                 raise Exception('Expected comma or end of array, got {}'.format(tokens[0]))
+            
+
+def from_string(json_string: str):
+    lexer = Lexer()
+    parser = Parser()
+    tokens = lexer.lex(json_string)
+    parsed, _ = parser.parse(tokens)
+    return parsed

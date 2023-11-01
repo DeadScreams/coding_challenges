@@ -84,4 +84,3 @@ class Lexer:
             return True, json_string[1:]
         return None, json_string
     
-print(Lexer().lex('{"a": ["hello", "world"]}'))
