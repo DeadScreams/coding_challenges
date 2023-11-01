@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../json_parser')
 
-from lexer import Lexer
+from ownlexer import Lexer
 
 import pytest
 

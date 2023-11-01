@@ -1,8 +1,4 @@
 class Lexer:
-    def __init__(self):
-        self.SYNTAX = ['{', '}', '[', ']', ':', ',']
-
-
     def lex(self, json_string: str):
         tokens = []
 
@@ -31,7 +27,7 @@ class Lexer:
             if whitespace is not None:
                 continue
 
-            if json_string[0] in self.SYNTAX:
+            if json_string[0] in ['{', '}', '[', ']', ':', ',']:
                 tokens.append(json_string[0])
                 json_string = json_string[1:]
                 continue
@@ -51,7 +47,7 @@ class Lexer:
                 return string, json_string[len(string) + 1:]
             else:
                 string += char
-        raise Exception('Expected end quote')
+        raise Exception('Expected end quote, got {}'.format(json_string[:1]))
     
     def lex_number(self, json_string: str):
         number = ''
@@ -87,3 +83,5 @@ class Lexer:
         if json_string[0] in ' \t\n':
             return True, json_string[1:]
         return None, json_string
+    
+print(Lexer().lex('{"a": ["hello", "world"]}'))
